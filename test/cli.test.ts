@@ -13,7 +13,7 @@ import {
 } from "../src/normalizar.js";
 import crudo from "./fixtures/crudo.json";
 
-const CLI = join(import.meta.dir, "../src/cli.ts");
+const CLI = join(import.meta.dir, "../src/bin.ts");
 
 function correr(...args: string[]) {
   const r = Bun.spawnSync([process.execPath, CLI, ...args, "--json"]);

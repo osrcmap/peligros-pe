@@ -1,6 +1,6 @@
 {
   "name": "@osrcmap/peligros-pe",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Inventario de peligros geológicos y zonas críticas del Perú (INGEMMET) como GeoJSON versionado + CLI agent-first para consultar qué hay cerca de un punto.",
   "type": "module",
   "license": "MIT",
@@ -37,13 +37,13 @@
     "node": ">=20"
   },
   "scripts": {
-    "dev": "bun src/cli.ts",
-    "build": "bun build src/cli.ts --target=node --outfile dist/cli.js",
+    "dev": "bun src/bin.ts",
+    "build": "bun build src/bin.ts --target=node --outfile dist/cli.js",
     "actualizar": "bun scripts/actualizar.ts",
     "test": "bun test",
     "typecheck": "tsc --noEmit",
     "lint": "biome check .",
-    "prepublishOnly": "bun run typecheck && bun test && bun run build"
+    "prepublishOnly": "bun run typecheck && bun test && bun run build && node scripts/humo.mjs"
   },
   "dependencies": {
     "@turf/distance": "^7.2.0",

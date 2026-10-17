@@ -93,6 +93,7 @@ bun run typecheck && bun run lint
 bun run actualizar --dry-run   # descarga y valida sin escribir
 bun run actualizar             # regenera data/
 bun run build                  # dist/cli.js (corre en Node >= 20)
+node scripts/humo.mjs          # prueba de humo del paquete compilado (CI: Node 20, 22 y 24)
 ```
 
 `actualizar` no escribe nada si un registro no valida el esquema, si faltan entidades en la descarga o si el número de registros cae más de 10 % frente a la captura anterior (`--forzar` para aceptar un cambio real). Un workflow semanal abre un PR con la nueva captura.

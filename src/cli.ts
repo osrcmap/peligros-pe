@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parseArgs } from "node:util";
@@ -474,9 +473,11 @@ function parsear(argv: string[]) {
   });
 }
 
-if (import.meta.main) {
-  const argv = process.argv.slice(2);
-  main(argv).catch((e: unknown) => {
+/** Punto de entrada (lo llama src/bin.ts). Nunca lanza: todo error sale estructurado con su exit code. */
+export async function ejecutar(argv: string[]): Promise<void> {
+  try {
+    await main(argv);
+  } catch (e: unknown) {
     const err =
       e instanceof AppError
         ? e
@@ -491,5 +492,5 @@ if (import.meta.main) {
       process.stderr.write(`✗ ${err.human}\n${err.hint ? `  ${err.hint}\n` : ""}`);
     }
     process.exitCode = exitCode(err.code);
-  });
+  }
 }
