@@ -1,11 +1,19 @@
 // Prueba de humo del paquete compilado (dist/cli.js) con el Node que la ejecute.
 // Sin dependencias: corre en cualquier Node >= 20. Uso: node scripts/humo.mjs
+//
+// Corre sobre una copia aislada (solo lo que se publica, sin node_modules): si el bundle
+// dejara de ser autónomo, falla aquí y no en la máquina de quien lo instala.
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { cpSync, mkdtempSync, readFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 
-const pkg = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
-const cli = new URL("../dist/cli.js", import.meta.url).pathname;
+const raiz = new URL("..", import.meta.url).pathname;
+const pkg = JSON.parse(readFileSync(join(raiz, "package.json"), "utf8"));
+const aislado = mkdtempSync(join(tmpdir(), "peligros-pe-humo-"));
+for (const f of ["dist", "data", "package.json"]) cpSync(join(raiz, f), join(aislado, f), { recursive: true });
+const cli = join(aislado, "dist/cli.js");
 
 function correr(...args) {
   const r = spawnSync(process.execPath, [cli, ...args, "--json"], { encoding: "utf8" });
