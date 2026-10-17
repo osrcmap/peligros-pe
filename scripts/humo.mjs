@@ -12,7 +12,8 @@ import { join } from "node:path";
 const raiz = new URL("..", import.meta.url).pathname;
 const pkg = JSON.parse(readFileSync(join(raiz, "package.json"), "utf8"));
 const aislado = mkdtempSync(join(tmpdir(), "peligros-pe-humo-"));
-for (const f of ["dist", "data", "package.json"]) cpSync(join(raiz, f), join(aislado, f), { recursive: true });
+for (const f of ["dist", "data", "package.json"])
+  cpSync(join(raiz, f), join(aislado, f), { recursive: true });
 const cli = join(aislado, "dist/cli.js");
 
 function correr(...args) {
