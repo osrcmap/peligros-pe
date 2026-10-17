@@ -50,7 +50,7 @@
     "@turf/distance": "^7.2.0",
     "@types/bun": "^1.2.0",
     "picocolors": "^1.1.1",
-    "typescript": "^5.9.0",
+    "typescript": "^7.0.2",
     "zod": "^4.1.0"
   }
 }
