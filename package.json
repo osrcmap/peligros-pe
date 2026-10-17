@@ -1,0 +1,58 @@
+{
+  "name": "@osrcmap/peligros-pe",
+  "version": "0.1.0",
+  "description": "Inventario de peligros geológicos y zonas críticas del Perú (INGEMMET) como GeoJSON versionado + CLI agent-first para consultar qué hay cerca de un punto.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Oscar Macchiavello (https://github.com/osrcmap)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osrcmap/peligros-pe.git"
+  },
+  "homepage": "https://github.com/osrcmap/peligros-pe#readme",
+  "bugs": "https://github.com/osrcmap/peligros-pe/issues",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "peru",
+    "ingemmet",
+    "huaico",
+    "peligros",
+    "geojson",
+    "cli",
+    "el-nino",
+    "gestion-de-riesgos"
+  ],
+  "bin": {
+    "peligros-pe": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "data",
+    "SKILL.md",
+    "LIMITATIONS.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "bun src/cli.ts",
+    "build": "bun build src/cli.ts --target=node --outfile dist/cli.js",
+    "actualizar": "bun scripts/actualizar.ts",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "prepublishOnly": "bun run typecheck && bun test && bun run build"
+  },
+  "dependencies": {
+    "@turf/distance": "^7.2.0",
+    "picocolors": "^1.1.1",
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.2.0",
+    "@types/bun": "^1.2.0",
+    "typescript": "^5.9.0"
+  }
+}

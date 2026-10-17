@@ -1,0 +1,44 @@
+name: Actualizar datos
+on:
+  schedule:
+    - cron: "0 11 * * 1" # lunes 06:00 en Lima
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      # Si la captura no valida o cae más de 10 %, el script sale con 1 y no escribe nada: el job falla y se nota.
+      - run: |
+          set +e
+          bun run actualizar > reporte.json
+          s=$?
+          cat reporte.json
+          exit $s
+      - run: bun test
+      - name: Resumen
+        id: resumen
+        run: |
+          {
+            echo 'cuerpo<<EOF'
+            echo 'Captura automática de GEOCATMIN. Revisar `cambios_vs_anterior` y `calidad` antes de publicar.'
+            echo
+            echo '```json'
+            cat reporte.json
+            echo '```'
+            echo EOF
+          } >> "$GITHUB_OUTPUT"
+          rm reporte.json
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          branch: actualizar-datos
+          commit-message: "datos: captura semanal de GEOCATMIN"
+          title: "Datos: captura semanal de GEOCATMIN"
+          body: ${{ steps.resumen.outputs.cuerpo }}

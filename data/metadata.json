@@ -1,0 +1,36 @@
+{
+  "version_esquema": 1,
+  "fecha_captura": "2026-10-17T07:57:23.006Z",
+  "fuente": {
+    "nombre": "INGEMMET – GEOCATMIN, servicio SERV_PELIGROS_GEOLOGICOS",
+    "url": "https://geocatmin.ingemmet.gob.pe/arcgis/rest/services/SERV_PELIGROS_GEOLOGICOS/MapServer",
+    "licencia": "No declarada por la fuente (ver LIMITATIONS.md)"
+  },
+  "conjuntos": {
+    "zonas_criticas": {
+      "archivo": "zonas-criticas.geojson",
+      "capas_fuente": [
+        2
+      ],
+      "registros_fuente": 2186,
+      "publicados": 2186,
+      "excluidos": {},
+      "sin_coordenadas": 8,
+      "sha256": "47d9191799888b2213cd2b427f3519c006f5fa034860d2c1d0cca0c835b1a8a3"
+    },
+    "peligros": {
+      "archivo": "peligros.geojson",
+      "capas_fuente": [
+        0,
+        1
+      ],
+      "registros_fuente": 37826,
+      "publicados": 37367,
+      "excluidos": {
+        "NoMostrarWEB": 459
+      },
+      "sin_coordenadas": 0,
+      "sha256": "17944b59e35a116da71649243aafab93aa086ede6fb39ea5e522d485602b4c67"
+    }
+  }
+}
