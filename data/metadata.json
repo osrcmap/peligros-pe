@@ -1,6 +1,6 @@
 {
   "version_esquema": 1,
-  "fecha_captura": "2026-10-17T09:22:42.289Z",
+  "fecha_captura": "2026-11-23T22:28:25.429Z",
   "fuente": {
     "nombre": "INGEMMET – GEOCATMIN, servicio SERV_PELIGROS_GEOLOGICOS",
     "url": "https://geocatmin.ingemmet.gob.pe/arcgis/rest/services/SERV_PELIGROS_GEOLOGICOS/MapServer",
@@ -24,13 +24,13 @@
         0,
         1
       ],
-      "registros_fuente": 37826,
-      "publicados": 37367,
+      "registros_fuente": 37835,
+      "publicados": 37376,
       "excluidos": {
         "NoMostrarWEB": 459
       },
       "sin_coordenadas": 0,
-      "sha256": "17944b59e35a116da71649243aafab93aa086ede6fb39ea5e522d485602b4c67"
+      "sha256": "d0fb2e0defa2bad15677beca19f309d7ff88d37d529f1106641e5678565915fe"
     }
   }
 }
